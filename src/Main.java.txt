@@ -1,0 +1,28 @@
+public class Main {
+    public static void main(String[] args) {
+        // 1. Создаем водителя
+        Driver driver1 = new Driver("Alice", "LIC12345");
+
+        // 2. Создаем массив объектов разных типов
+        Vehicle[] vehicles = new Vehicle[3];
+        
+        vehicles[0] = new Car("Toyota", 2022, 4, "Petrol");
+        vehicles[1] = new Motorcycle("Harley", 2021, false);
+        vehicles[2] = new Truck("Volvo", 2020, 20.5, 3);
+
+        // 3. Назначаем водителей и выводим инфо в цикле
+        for (Vehicle v : vehicles) {
+            v.setDriver(driver1); // Агрегация (один водитель на всех)
+            
+            v.displayInfo();
+            v.startEngine();
+            
+            if (v.driver != null) {
+                v.driver.displayDriverInfo();
+            }
+            
+            v.stopEngine();
+            System.out.println("--------------------");
+        }
+    }
+}
