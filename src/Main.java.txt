@@ -1,28 +1,35 @@
 public class Main {
     public static void main(String[] args) {
-        // 1. Создаем водителя
-        Driver driver1 = new Driver("Alice", "LIC12345");
+     
+        Driver driver1 = new Driver("John Doe", "D-12345");
+        Driver driver2 = new Driver("Jane Smith", "D-67890");
 
-        // 2. Создаем массив объектов разных типов
-        Vehicle[] vehicles = new Vehicle[3];
+    
+        Car myCar = new Car("BMW", 2023, 4, "Petrol");
+        Motorcycle myMoto = new Motorcycle("Ducati", 2022, false);
+        Truck myTruck = new Truck("Scania", 2020, 15.5, 3);
+
         
-        vehicles[0] = new Car("Toyota", 2022, 4, "Petrol");
-        vehicles[1] = new Motorcycle("Harley", 2021, false);
-        vehicles[2] = new Truck("Volvo", 2020, 20.5, 3);
+        myCar.setDriver(driver1);
+        myMoto.setDriver(driver2);
+        myTruck.setDriver(driver1);
 
-        // 3. Назначаем водителей и выводим инфо в цикле
-        for (Vehicle v : vehicles) {
-            v.setDriver(driver1); // Агрегация (один водитель на всех)
-            
+  
+        Vehicle[] fleet = {myCar, myMoto, myTruck};
+
+        System.out.println("--- VEHICLE MANAGEMENT SYSTEM ---");
+        for (Vehicle v : fleet) {
             v.displayInfo();
             v.startEngine();
             
             if (v.driver != null) {
                 v.driver.displayDriverInfo();
+            } else {
+                System.out.println("No driver assigned.");
             }
             
             v.stopEngine();
-            System.out.println("--------------------");
+            System.out.println("---------------------------------");
         }
     }
 }
